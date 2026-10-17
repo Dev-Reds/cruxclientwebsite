@@ -1,5 +1,5 @@
 <script setup>
-const { t } = useLanguage()
+const { t } = useI18n()
 useHead({ title: t('index.launcher') })
 </script>
 
