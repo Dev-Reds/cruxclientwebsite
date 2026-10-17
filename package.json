@@ -1,5 +1,5 @@
 {
-  "name": "website-nuxt",
+  "name": "cruxclientwebsite",
   "type": "module",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^10.6.0",
     "leaflet": "^1.9.4",
     "nuxt": "^4.4.6",
     "vue": "^3.5.34",
