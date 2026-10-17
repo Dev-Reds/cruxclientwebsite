@@ -14,15 +14,15 @@ useHead({ title: t('index.launcher') })
     <div class="download-box">
             
         <a href="https://github.com/Dev-Reds/crux-client/releases/latest/download/Crux-Client-Installer.exe" class="download-btn">
-            <span class="btn-title">{{ t('launcher.download') }} Windows</span>
+            <span class="btn-title">{{ t('launcher.windows') }}</span>
             <span class="btn-sub">installer.exe</span></a>
 
         <a href="https://github.com/Dev-Reds/crux-client/releases/latest/download/Crux-Client-Linux-x64.zip" class="download-btn">
-            <span class="btn-title">{{ t('launcher.download') }} Linux</span>
+            <span class="btn-title">{{ t('launcher.linux') }}</span>
             <span class="btn-sub">Linux-x64-installer.zip</span></a>
 
         <a href="https://github.com/Dev-Reds/crux-client/releases/latest/download/Crux-Client-Mac-Installer.zip" class="download-btn">
-            <span class="btn-title">{{ t('launcher.download') }} Mac</span>
+            <span class="btn-title">{{ t('launcher.mac') }}</span>
             <span class="btn-sub">Mac-Installer.zip</span></a>
             
     </div>

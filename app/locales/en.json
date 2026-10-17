@@ -1,0 +1,10 @@
+{
+  "index": {
+    "launcher": "Crux Client"
+  },
+  "launcher": {
+    "windows": "Download for Windows",
+    "linux": "Download for Linux",
+    "mac": "Download for Mac"
+  }
+}   
