@@ -1,0 +1,263 @@
+/* ============ Crux Client – Rechtliches (Impressum / Datenschutz / Privacy) ============ */
+:root {
+  --bg: #0a0910;
+  --bg-2: #0f0d18;
+  --surface: #14121e;
+  --surface-2: #1b1827;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --text: #eceaf5;
+  --muted: #9b94af;
+  --accent: #a06cff;
+  --accent-2: #c9a6ff;
+  --accent-dark: #5b32b8;
+  --radius: 14px;
+  --radius-lg: 24px;
+  --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 38% at 12% 0%, rgba(160, 108, 255, 0.2), transparent 70%),
+    radial-gradient(45% 32% at 92% 8%, rgba(91, 50, 184, 0.22), transparent 70%);
+}
+
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img, svg { display: block; max-width: 100%; }
+
+/* ============ Topbar ============ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(10, 9, 16, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.brand:hover { color: var(--text); text-decoration: none; }
+.brand img { width: 30px; height: 30px; border-radius: 9px; }
+.brand em { font-style: normal; color: var(--accent-2); }
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* ============ Tabs ============ */
+.tabs {
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  margin: 34px auto 0;
+  padding: 6px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.tab:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.tab[aria-current="page"] {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 10px 24px -12px rgba(160, 108, 255, 0.9);
+}
+
+/* ============ Content ============ */
+.container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 26px 20px 56px;
+}
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 4vw, 46px);
+  box-shadow: var(--shadow);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.card h1 {
+  margin: 0 0 0.55em;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, var(--text), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.card h2 {
+  position: relative;
+  margin: 2.1em 0 0.7em;
+  padding-left: 15px;
+  border-top: 1px solid var(--line);
+  padding-top: 1.5em;
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.card h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(1.5em + 0.55em);
+  transform: translateY(-50%);
+  width: 4px;
+  height: 1.1em;
+  border-radius: 99px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+}
+.card p { margin: 0 0 1em; color: #c9c3dd; }
+.card strong { color: var(--text); }
+.card ul {
+  margin: 0 0 1.2em;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55em;
+}
+.card li { position: relative; padding-left: 26px; color: #c9c3dd; }
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(160, 108, 255, 0.16);
+}
+.stand {
+  margin: 2.2em 0 0;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ============ Footer ============ */
+.legal-foot {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ============ Kopier-Sperre ============ */
+.guard-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  z-index: 60;
+  max-width: calc(100% - 32px);
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid rgba(160, 108, 255, 0.45);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.guard-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 560px) {
+  .topbar__inner { padding: 12px 16px; }
+  .back { padding: 7px 12px; font-size: 0.8rem; }
+  .tabs { margin-top: 24px; }
+  .tab { padding: 8px 14px; font-size: 0.85rem; }
+}
