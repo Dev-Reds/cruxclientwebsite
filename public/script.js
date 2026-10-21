@@ -171,6 +171,7 @@
 
   const versionPicks = $$("#pickVersion .pick");
   const osPicks = $$("#pickOs .pick");
+  const panelVersion = $("#panelVersion");
   const panelOs = $("#panelOs");
   const versionHint = $("#versionHint");
   const osHint = $("#osHint");
@@ -365,15 +366,63 @@
   /* ---------- Auto-scroll to the OS panel after picking a version ---------- */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Download-Link: Versions-Auswahl mittig anzeigen ---------- */
+  const scrollToVersion = () => {
+    if (!panelVersion) return;
+    panelVersion.classList.add("is-visible");
+    panelVersion.classList.remove("is-highlight");
+    void panelVersion.offsetWidth;
+    panelVersion.classList.add("is-highlight");
+
+    /* Reveal-Transform (translateY) beim Messen ausschalten, sonst sitzt die
+       Auswahl um die Einblend-Distanz zu hoch im Bildschirm */
+    const prevTransition = panelVersion.style.transition;
+    const prevTransform = panelVersion.style.transform;
+    panelVersion.style.transition = "opacity .7s ease";
+    panelVersion.style.transform = "none";
+    const rect = panelVersion.getBoundingClientRect();
+    panelVersion.style.transition = prevTransition;
+    panelVersion.style.transform = prevTransform;
+
+    const navH = nav?.offsetHeight || 0;
+    const space = window.innerHeight - navH - 24;
+    /* Passt die Auswahl nicht komplett in den Viewport, wird sie oben ausgerichtet */
+    const top =
+      rect.height >= space
+        ? window.scrollY + rect.top - navH - 12
+        : window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: reduceMotion ? "auto" : "smooth"
+    });
+  };
+
   const scrollToOs = () => {
     if (!panelOs) return;
     panelOs.classList.remove("is-highlight");
     void panelOs.offsetWidth;
     panelOs.classList.add("is-highlight");
     panelOs.focus({ preventScroll: true });
-    panelOs.scrollIntoView({
-      behavior: reduceMotion ? "auto" : "smooth",
-      block: "center"
+
+    /* Reveal-Transform (translateY) beim Messen ausschalten, sonst sitzt das
+       Panel um die Einblend-Distanz zu hoch im Bildschirm */
+    const prevTransition = panelOs.style.transition;
+    const prevTransform = panelOs.style.transform;
+    panelOs.style.transition = "opacity .7s ease";
+    panelOs.style.transform = "none";
+    const rect = panelOs.getBoundingClientRect();
+    panelOs.style.transition = prevTransition;
+    panelOs.style.transform = prevTransform;
+
+    const navH = nav?.offsetHeight || 0;
+    const space = window.innerHeight - navH - 24;
+    const top =
+      rect.height >= space
+        ? window.scrollY + rect.top - navH - 12
+        : window.scrollY + rect.top - (window.innerHeight - rect.height) / 2;
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: reduceMotion ? "auto" : "smooth"
     });
   };
 
@@ -522,6 +571,11 @@
       const target = $(id);
       if (!target) return;
       e.preventDefault();
+      /* "Download" zeigt direkt die Versions-Auswahl in der Bildschirmmitte */
+      if (id === "#download") {
+        scrollToVersion();
+        return;
+      }
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
